@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Structure - 
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+devtinder/
+├── .github/workflows/ci.yml
+├── .env.local (never commit)
+├── next.config.js
+├── package.json
+├── public/
+│   └── icons, og images
+├── src/
+│   ├── app/
+│   │   ├── (marketing)/            # public pages: landing, pricing, faq
+│   │   ├── (auth)/                 # sign-in, callback routes
+│   │   ├── (onboarding)/           # multi-step onboarding
+│   │   ├── (app)/
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx            # feed/discovery
+│   │   │   ├── profile/
+│   │   │   │   ├── [username]/page.tsx
+│   │   │   ├── matches/page.tsx
+│   │   │   ├── messages/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── [threadId]/page.tsx
+│   │   │   ├── posts/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── new/page.tsx
+│   │   │   ├── events/
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── [eventId]/page.tsx
+│   │   │   └── settings/page.tsx
+│   │   ├── api/
+│   │   │   ├── auth/route.ts        # if using custom auth
+│   │   │   ├── users/route.ts
+│   │   │   ├── discovery/route.ts
+│   │   │   ├── matches/route.ts
+│   │   │   ├── messages/route.ts
+│   │   │   ├── posts/route.ts
+│   │   │   ├── events/route.ts
+│   │   │   ├── payments/
+│   │   │   │   ├── razorpay/order/route.ts
+│   │   │   │   └── razorpay/webhook/route.ts
+│   │   │   └── upload/route.ts
+│   │   └── globals.css
+│   ├── components/
+│   │   ├── ui/                      # Button, Modal, Avatar, Badge, Sheet
+│   │   ├── feed/
+│   │   ├── profile/
+│   │   ├── chat/
+│   │   ├── posts/
+│   │   └── events/
+│   ├── lib/
+│   │   ├── db.ts                    # Prisma/drizzle/mongoose client
+│   │   ├── auth.ts                  # Clerk/NextAuth helpers
+│   │   ├── payments.ts              # Razorpay SDK wrapper
+│   │   ├── validation.ts            # zod schemas
+│   │   ├── cache.ts                 # server cache helpers
+│   │   ├── search.ts                # search/index utils
+│   │   └── logger.ts
+│   ├── styles/
+│   ├── utils/
+│   │   ├── formatting.ts
+│   │   └── constants.ts
+│   ├── hooks/
+│   │   ├── useRealtime.ts
+│   │   └── useUpload.ts
+│   └── types/
+│       └── domain.ts
+└── tests/
+    ├── e2e/
+    └── unit/
+```
